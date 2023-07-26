@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Header from "./components/Header";
+import Sidebar from "./components/SideBar";
+import ProductCard from "./components/ProductCard";
+import CartSidebar from "./components/CartSidebar";
+import Footer from "./components/Footer";
+import productData from "./components/productData"; // Import the product list
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <div className="content">
+        <Sidebar />
+        <main className="main">
+          <div className="product-grid">
+            {productData.map((product) => (
+              <ProductCard
+                key={product.id}
+                title={product.title}
+                image={product.image}
+                price={product.price}
+              />
+            ))}
+          </div>
+        </main>
+        <CartSidebar />
+      </div>
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
